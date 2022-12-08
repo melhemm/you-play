@@ -1,7 +1,8 @@
 import express from 'express'
 const app = express()
 import dotenv from 'dotenv'
-import connectDB from './config/database.js'
+// import connectDB from './config/database.js'
+import mongoose from "mongoose";
 import cors from 'cors'
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -17,6 +18,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 dotenv.config({ path: path.resolve(__dirname, './.env') })
+
+const connectDB = async() => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URL)
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
+  } catch (error) {
+    console.log(`Error: ${error.message}`)
+  }
+}
 
 connectDB()
 
