@@ -10,7 +10,7 @@ import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import genreRoutes from './routes/genreRoutes.js'
 
-dotenv.config()
+require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 
 connectDB()
 
