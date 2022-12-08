@@ -3,12 +3,18 @@ const app = express()
 import dotenv from 'dotenv'
 import connectDB from './config/database.js'
 import cors from 'cors'
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 
 import productRoutes from './routes/productRoute.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import genreRoutes from './routes/genreRoutes.js'
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 dotenv.config({ path: path.resolve(__dirname, './.env') })
 
