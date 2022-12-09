@@ -93,7 +93,7 @@ const  actions = {
     
     NProgress.start()
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`${baseUrl}/api/products?keyword=${searchQuery}&pageNumber=${page}`)
+    await axios.get(`process.env.VUE_BASE_URL/api/products?keyword=${searchQuery}&pageNumber=${page}`)
       .then((response) => {
         console.log(process.env.VUE_APP_API_BASE)
         commit("PRODUCTS", response.data.products)
