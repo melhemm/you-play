@@ -12,12 +12,11 @@
     </div>
     <div class="mx-auto row row-cols-1 row-cols-md-3 g-4 mt-4 m-4">
       <div class="col mb-0" v-for="product in products" :key="product._id">
-        <div class="card h-100 mb-0">
+        <div class="card h-100 mb-0 md-w-75">
           <img :src="product.image" class="card-img-top image-product p-2">
           <div class="card-body m-0">
             <h6 class="card-title mb-0">{{product.title}}</h6>
-            <p class="card-text">Genre: {{product.genre.title}}</p>
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center mt-2">
               <button class="btn btn-primary" disabled>
                 &#8381; {{product.price}}
               </button>
