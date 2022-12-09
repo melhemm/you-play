@@ -54,7 +54,7 @@ export default createStore({
   },
   actions: {
     async siginIn({dispatch} , credentials) {
-      let response = await axios.post("http://localhost:5000/api/users/login", credentials)
+      let response = await axios.post("https://you-play.onrender.com/api/users/login", credentials)
       return dispatch("attempt", response.data.token)
     },
 
@@ -68,7 +68,7 @@ export default createStore({
       }
 
       try {
-        let response = await axios.get('http://localhost:5000/api/users/profile')
+        let response = await axios.get('https://you-play.onrender.com/api/users/profile')
         commit('SET_USER', response.data)
         commit('SET_USER_ID', response.data._id)
         commit('SET_ROLE', response.data.role)
@@ -80,7 +80,7 @@ export default createStore({
     },
 
     async register({dispatch}, {name, email, password}) {
-      await axios.post("http://localhost:5000/api/users", {
+      await axios.post("https://you-play.onrender.com/api/users", {
         name: name,
         email: email,
         password: password
@@ -105,7 +105,7 @@ export default createStore({
 
     siginOut ({ commit, dispatch }) {
       NProgress.start()
-      return axios.get('http://localhost:5000/api/users/logout').then(() => {
+      return axios.get('https://you-play.onrender.com/api/users/logout').then(() => {
         commit('SET_USER', null)
         commit('SET_ROLE', null)
         commit('SET_TOKEN', null)
@@ -121,7 +121,7 @@ export default createStore({
 
     async getAllUsers({commit, dispatch}) {
       commit('LOADING_STATUS', true)
-      await axios.get('http://localhost:5000/api/users')
+      await axios.get('https://you-play.onrender.com/api/users')
       .then((response) => {
         commit('LOADING_STATUS', false)
       }).catch((err) => {
