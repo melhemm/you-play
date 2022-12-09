@@ -46,7 +46,7 @@ export const actions = {
       userId: state.userId,
       cart: rootState.cart.cart
     }
-    await axios.post('http://localhost:5000/api/orders', userOrder)
+    await axios.post('https://you-play.onrender.com/api/orders', userOrder)
     .then(() => {
       NProgress.start()
       localStorage.removeItem('cart')
@@ -71,7 +71,7 @@ export const actions = {
 
   async getOrders({commit, dispatch}) {
     commit('LOADING_STATUS', true, { root: true })
-    await axios.get('http://localhost:5000/api/orders/myorders')
+    await axios.get('https://you-play.onrender.com/api/orders/myorders')
     .then((response) => {
       commit("SET_USER_ORDER_DETAILS", response.data)
       console.log(response.data)
@@ -87,7 +87,7 @@ export const actions = {
 
   async getAllOrders({commit, dispatch}) {
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get('http://localhost:5000/api/orders')
+    await axios.get('https://you-play.onrender.com/api/orders')
     .then((response) => {
       commit("SET_ALL_ORDERS_ADMIN", response.data)
       commit('LOADING_STATUS', false, {root: true})
