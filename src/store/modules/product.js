@@ -2,7 +2,7 @@ import axios from 'axios'
 import router from '@/router'
 import NProgress from 'nprogress'
 
-let baseUrl = process.env.VUE_BASE_URL
+let baseUrl = 'https://you-play.onrender.com/'
 
 const state = {
   products: [],
@@ -93,7 +93,7 @@ const  actions = {
     
     NProgress.start()
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`https://you-play.onrender.com/api/products?keyword=${searchQuery}&pageNumber=${page}`)
+    await axios.get(`${baseUrl}/api/products?keyword=${searchQuery}&pageNumber=${page}`)
       .then((response) => {
         console.log(process.env.VUE_APP_API_BASE)
         commit("PRODUCTS", response.data.products)
@@ -116,7 +116,7 @@ const  actions = {
   async fetchSearchProducts({commit, dispatch}, {searchQuery=""}) {
     NProgress.start()
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`http://localhost:5000/api/products?keyword=${searchQuery}`)
+    await axios.get(`${baseUrl}/api/products?keyword=${searchQuery}`)
       .then((response) => {
         commit("PRODUCTS", response.data.products)
         commit('LOADING_STATUS', false, {root: true})

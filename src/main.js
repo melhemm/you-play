@@ -8,7 +8,7 @@ import "bootstrap"
 import 'nprogress/nprogress.css'
 require('@/store/subscriber')
 
-axios.defaults.baseURL = process.env.VUE_BASE_URL
+axios.defaults.baseURL = "https://you-play.onrender.com/"
 
 store.dispatch('attempt', localStorage.getItem('token')).then(() => {
   createApp(App).use(store).use(router).mount('#app')
