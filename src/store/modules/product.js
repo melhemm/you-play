@@ -2,8 +2,6 @@ import axios from 'axios'
 import router from '@/router'
 import NProgress from 'nprogress'
 
-let baseUrl = 'https://you-play.onrender.com/'
-
 const state = {
   products: [],
   product: {},
@@ -93,7 +91,7 @@ const  actions = {
     
     NProgress.start()
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`${baseUrl}/api/products?keyword=${searchQuery}&pageNumber=${page}`)
+    await axios.get(`https://you-play.onrender.com/api/products?keyword=${searchQuery}&pageNumber=${page}`)
       .then((response) => {
         console.log(process.env.VUE_APP_API_BASE)
         commit("PRODUCTS", response.data.products)
@@ -116,7 +114,7 @@ const  actions = {
   async fetchSearchProducts({commit, dispatch}, {searchQuery=""}) {
     NProgress.start()
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`${baseUrl}/api/products?keyword=${searchQuery}`)
+    await axios.get(`https://you-play.onrender.com/api/products?keyword=${searchQuery}`)
       .then((response) => {
         commit("PRODUCTS", response.data.products)
         commit('LOADING_STATUS', false, {root: true})
@@ -136,7 +134,7 @@ const  actions = {
     commit
   }, id) {
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`${baseUrl}/api/products/${id}`)
+    await axios.get(`https://you-play.onrender.com/api/products/${id}`)
     .then((response) => {
       commit('SET_PRODUCT', response.data)
       commit('LOADING_STATUS', false, {root: true})
@@ -148,7 +146,7 @@ const  actions = {
 
   // Create product 
   async createProduct({commit, dispatch}, product) {
-    await axios.post(`${baseUrl}/api/products`, product)
+    await axios.post(`https://you-play.onrender.com/api/products`, product)
       .then(() => {
         commit('ADD_PRODUCT', product)
         const notification = {
@@ -170,7 +168,7 @@ const  actions = {
   async updateProduct({
     commit, dispatch
   }, product) {
-    let response = await axios.put(`${baseUrl}/api/products/${product._id}`, product)
+    let response = await axios.put(`https://you-play.onrender.com/api/products/${product._id}`, product)
     let newProduct = response.data
     commit('EDIT_PRODUCT', newProduct)
     const notification = {
@@ -185,7 +183,7 @@ const  actions = {
   async deleteProduct({
     commit, dispatch
   }, product) {
-    let response = await axios.delete(`${baseUrl}/api/products/${product._id}`)
+    let response = await axios.delete(`https://you-play.onrender.com/api/products/${product._id}`)
     if (response.status == 200 || response.status == 204) {
       commit('DELETE_PRODUCT', product.id)
       const notification = {
@@ -204,7 +202,7 @@ const  actions = {
   },
 
   async getAllGener({commit}) {
-    await axios.get(`${baseUrl}/api/genre`)
+    await axios.get(`https://you-play.onrender.com/api/genre`)
     .then((response) => {
       commit("SET_ALL_GENRE", response.data)
     }).catch((err) => {
