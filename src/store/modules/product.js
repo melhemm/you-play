@@ -136,7 +136,7 @@ const  actions = {
     commit
   }, id) {
     commit('LOADING_STATUS', true, {root: true})
-    await axios.get(`http://localhost:5000/api/products/${id}`)
+    await axios.get(`${baseUrl}/api/products/${id}`)
     .then((response) => {
       commit('SET_PRODUCT', response.data)
       commit('LOADING_STATUS', false, {root: true})
@@ -148,7 +148,7 @@ const  actions = {
 
   // Create product 
   async createProduct({commit, dispatch}, product) {
-    await axios.post('http://localhost:5000/api/products', product)
+    await axios.post(`${baseUrl}/api/products`, product)
       .then(() => {
         commit('ADD_PRODUCT', product)
         const notification = {
@@ -170,7 +170,7 @@ const  actions = {
   async updateProduct({
     commit, dispatch
   }, product) {
-    let response = await axios.put(`http://localhost:5000/api/products/${product._id}`, product)
+    let response = await axios.put(`${baseUrl}/api/products/${product._id}`, product)
     let newProduct = response.data
     commit('EDIT_PRODUCT', newProduct)
     const notification = {
@@ -185,7 +185,7 @@ const  actions = {
   async deleteProduct({
     commit, dispatch
   }, product) {
-    let response = await axios.delete(`http://localhost:5000/api/products/${product._id}`)
+    let response = await axios.delete(`${baseUrl}/api/products/${product._id}`)
     if (response.status == 200 || response.status == 204) {
       commit('DELETE_PRODUCT', product.id)
       const notification = {
@@ -204,7 +204,7 @@ const  actions = {
   },
 
   async getAllGener({commit}) {
-    await axios.get('http://localhost:5000/api/genre')
+    await axios.get(`${baseUrl}/api/genre`)
     .then((response) => {
       commit("SET_ALL_GENRE", response.data)
     }).catch((err) => {
