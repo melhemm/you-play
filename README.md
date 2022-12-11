@@ -1,19 +1,26 @@
-# vue
+#  MEVN stack - MongoDB, Expressjs, Vuejs, and Nodejs.
 
 ## Project setup
 ```
+./
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
 ```
-
-### Compiles and minifies for production
+cd server
 ```
-npm run build
+server/
+
+npm install
+
+craete .env file 
+
+set MONGO_DB_URL value
+set JWT_SECRET value
+
+then run
+
+node index.js
+or 
+nodemon
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
