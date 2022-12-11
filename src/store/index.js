@@ -60,19 +60,23 @@ export default createStore({
 
     async attempt ({ commit} , token) {
       if(token) {
+        NProgress.start()
         commit('SET_TOKEN', token)
       }
 
       if(!this.state.token) {
+        NProgress.done()
         return
       }
 
       try {
         let response = await axios.get('https://you-play.onrender.com/api/users/profile')
+        NProgress.start()
         commit('SET_USER', response.data)
         commit('SET_USER_ID', response.data._id)
         commit('SET_ROLE', response.data.role)
       } catch (error) {
+        NProgress.done()
         commit('SET_TOKEN', null)
         commit('SET_USER', null)
         commit('SET_ROLE', null)
@@ -97,7 +101,7 @@ export default createStore({
         NProgress.done()
         const notification = {
           type: 'error',
-          message: 'Failed to register try again ' + err.message 
+          message: 'Failed to register try again '
         }
         dispatch('notification/add', notification, {root: true})
       })
@@ -127,7 +131,7 @@ export default createStore({
       }).catch((err) => {
         const notification = {
           type: 'error',
-          message: 'There was a problem get orders' + err.message
+          message: 'There was a problem get orders ' + err.message
         }
         dispatch('notification/add', notification, {root: true})
       })
