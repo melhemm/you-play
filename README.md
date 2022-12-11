@@ -45,4 +45,4 @@ Front-end:
 - Vuex
 - Bootsrap
 - Nprogress
-- vue-router
+- Vue-router
