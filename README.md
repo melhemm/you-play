@@ -30,6 +30,7 @@ nodemon
 - Client can view all products and get product by ID.
 - Client can add product to cart, and order.
 - Clinet can view all orders.
+- Pagination and Search from server
 
 ## Project Technologies 
 
