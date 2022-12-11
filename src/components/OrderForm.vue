@@ -4,7 +4,7 @@
     <form @submit.prevent="submit">
       <div class="mb-3">
         <label for="fullname" class="form-label">Full name</label>
-        <input class="form-control" type="text" name="fullname" placeholder="ФИО" @input="fullname" required>
+        <input class="form-control" type="text" name="fullname" placeholder="Your name" @input="fullname" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Address</label>
@@ -15,7 +15,7 @@
         <label class="form-label">Phone number</label>
         <input class="form-control" type="text" name="phone" placeholder="Phone"  @input="phoneNumber" required>
       </div>
-      <button class="btn btn-dark px-5" type="submit">Send</button>
+      <button class="btn btn-dark px-5" type="submit">{{loading ? "Loading ..." : "Submit"}}</button>
     </form>
   </div>
 </template>
@@ -23,15 +23,21 @@
 <script>
   export default {
     name: 'OrderForm',
+    data() {
+      return {
+        loading: false
+      }
+    },
     computed: {
       message() {
         return this.$store.state.orders.fullname
       }
     },
-
     methods: {
       submit() {
+        this.loading = true;
         return this.$store.dispatch('orders/createOrder')
+        
       },
 
       fullname(e) {
@@ -44,7 +50,8 @@
 
       phoneNumber(e) {
         this.$store.commit('orders/phoneNumber', e.target.value)
-      }
+      },
+      
     },
   }
 </script>
