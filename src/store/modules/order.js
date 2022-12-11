@@ -55,7 +55,7 @@ export const actions = {
       })
       const notification = {
         type: 'success',
-        message: 'Ваш заказ обрабатывается оператором. Ожидайте звонка или смс на телефон'
+        message: 'Success wait for a phone call'
       }
       dispatch('notification/add', notification, {root: true})
       NProgress.done()
@@ -74,7 +74,6 @@ export const actions = {
     await axios.get('https://you-play.onrender.com/api/orders/myorders')
     .then((response) => {
       commit("SET_USER_ORDER_DETAILS", response.data)
-      console.log(response.data)
       commit('LOADING_STATUS', false, { root: true })
     }).catch((err) => {
       const notification = {

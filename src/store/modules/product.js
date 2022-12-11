@@ -93,7 +93,6 @@ const  actions = {
     commit('LOADING_STATUS', true, {root: true})
     await axios.get(`https://you-play.onrender.com/api/products?keyword=${searchQuery}&pageNumber=${page}`)
       .then((response) => {
-        console.log(process.env.VUE_APP_API_BASE)
         commit("PRODUCTS", response.data.products)
         commit('LOADING_STATUS', false, {root: true})
         commit('SET_TOTAL_PRODUCTS', response.data.count)
@@ -123,7 +122,7 @@ const  actions = {
         NProgress.done()
         const notification = {
           type: 'error',
-          message: 'There was a problem fetching products' + err.message
+          message: 'There was a problem fetching products ' + err.message
         }
         dispatch('notification/add', notification, {root: true})
       })
