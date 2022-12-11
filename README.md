@@ -1,5 +1,6 @@
 #  MEVN stack - MongoDB, Expressjs, Vuejs, and Nodejs.
 # E-Commerce website You-play
+# Live Demo: https://you-play-ps4.netlify.app/
 ## Project setup
 ```
 ./
