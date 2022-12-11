@@ -1,5 +1,6 @@
 <template>
-  <div class="container col-4 mt-5 mx-auto">
+  <div class="container col-8 mt-5 mx-auto">
+    <h1 class="text-center">Login</h1>
     <form @submit.prevent="submit">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -10,7 +11,7 @@
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" v-model="form.password" required>
       </div>
-      <button type="submit" class="btn btn-dark">Submit</button>
+      <button type="submit" class="btn btn-dark" value="Submit">{{loading ? "Loading ..." : "Submit"}}</button>
     </form>
   </div>
 </template>
@@ -20,6 +21,7 @@
     name: 'Signin',
     data() {
       return {
+        loading: false,
         form: {
           email: '',
           password: ''
@@ -29,8 +31,10 @@
 
     methods: {
       submit() {
+        this.loading = true;
         this.$store.dispatch("siginIn", this.form)
         .then(() => {
+          this.loading = false;
           this.$router.replace({
             name: 'Home'
           })
@@ -42,8 +46,9 @@
         }).catch((err) => {
           const notification = {
           type: 'error',
-          message: 'Login failed' + err.message
+          message: 'Login failed check your password or email'
         }
+          this.loading = false;
           this.$store.dispatch('notification/add', notification, {root: true})
         })
       }

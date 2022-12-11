@@ -1,5 +1,5 @@
 <template>
-  <div class="container col-4 mt-5 mx-auto" id="custom-style-form">
+  <div class="container col-8 mt-5 mx-auto" id="custom-style-form">
     <h4 class="text-center">Register</h4>
     <form @submit.prevent="submit">
       <div>
@@ -14,7 +14,7 @@
         <label class="form-label">Password</label>
         <input type="password" class="form-control" name="password" placeholder="Password" v-model="form.password"><br>
       </div>
-      <button class="btn btn-dark" type="submit" :disabled="!formValid">Submit</button>
+      <button class="btn btn-dark" type="submit" :disabled="!formValid">{{loading ? "Loading ..." : "Submit"}}</button>
     </form>
   </div>
 </template>
@@ -24,6 +24,7 @@
     name: 'Register',
     data() {
       return {
+        loading: false,
         form: {
           name: '',
           email: '',
@@ -47,6 +48,7 @@
     },
     methods: {
       submit() {
+        this.loading = true;
         this.$store.dispatch("register", this.form)
           .then(() => {
             this.$router.replace({
