@@ -13,6 +13,14 @@
       </div>
       <button type="submit" class="btn btn-dark" value="Submit">{{loading ? "Loading ..." : "Submit"}}</button>
     </form>
+    <span>To login as admin: 
+      email: admin@example.com
+      password: 123456
+    </span> <br>
+    <span> To login as user: 
+      email: exampleuser@example.com
+      password: 1234567
+    </span>
   </div>
 </template>
 
