@@ -15,7 +15,7 @@
     </form>
     <span>To login as admin: 
       email: admin@example.com
-      password: 123456
+      password: 1234567
     </span> <br>
     <span> To login as user: 
       email: exampleuser@example.com
